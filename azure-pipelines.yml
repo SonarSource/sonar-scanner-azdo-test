@@ -4,16 +4,27 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+- main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'Peach'
+    scannerMode: 'MSBuild'
+    projectKey: 'SampleNetSolution'
+    extraProperties: sonar.verbose=true
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: '**/*.csproj'
+    arguments: '--collect "Code coverage"'
+- task: SonarQubeAnalyze@5
+  inputs:
+    jdkversion: 'JAVA_HOME_11_X64'
+    
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300'
