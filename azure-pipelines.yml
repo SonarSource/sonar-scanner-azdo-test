@@ -19,7 +19,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
-    projects: '**/*.csproj'
+    projects: '**/*Tests.csproj'
     arguments: '--collect "Code coverage"'
 - task: SonarQubeAnalyze@5
   inputs:
