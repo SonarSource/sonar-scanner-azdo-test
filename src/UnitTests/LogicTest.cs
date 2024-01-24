@@ -11,9 +11,16 @@ public class LogicTest
     [DataRow(true, true, true)]
     [DataRow("Test", "Test", true)]
     [DataRow("Test", "TEST", false)]
-    public void TestMethod1(object first, object second, bool expected)
+    public void AreEqual(object first, object second, bool expected)
     {
         var actual = Logic.AreEqual(first, second);
         Assert.AreEqual(expected, actual);
+    }
+
+    [TestMethod]
+    public void Max_IsBigger()
+    {
+        var actual = Logic.Max(10, 1);
+        Assert.AreEqual(10, actual);
     }
 }
