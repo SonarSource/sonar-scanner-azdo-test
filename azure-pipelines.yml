@@ -1,0 +1,30 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: windows-latest
+
+steps:
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'Peach'
+    scannerMode: 'MSBuild'
+    projectKey: 'SampleNetSolution'
+    extraProperties: sonar.verbose=true
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: '**/*Tests.csproj'
+    arguments: '--collect "Code coverage"'
+- task: SonarQubeAnalyze@5
+  inputs:
+    jdkversion: 'JAVA_HOME_21_X64'
+    
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300'
