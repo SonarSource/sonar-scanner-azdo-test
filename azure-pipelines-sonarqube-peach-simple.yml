@@ -3,8 +3,8 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- main
+# The pipeline is supposed to be run manually
+trigger: none
 
 pool:
   vmImage: windows-latest
@@ -16,11 +16,13 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: 'SampleNetSolution'
     extraProperties: sonar.verbose=true
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
     projects: '**/*Tests.csproj'
     arguments: '--collect "Code coverage"'
+
 - task: SonarQubeAnalyze@5
   inputs:
     jdkversion: 'JAVA_HOME_21_X64'
