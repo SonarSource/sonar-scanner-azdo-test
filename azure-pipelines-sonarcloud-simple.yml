@@ -7,7 +7,7 @@ steps:
     SonarCloud: 'SonarCloud'
     organization: 'sonarsource'
     scannerMode: 'MSBuild'
-    projectKey: 'sonar-scanner-vsts-test'
+    projectKey: 'SonarSource_sonar-scanner-vsts-test'
     extraProperties: |
       sonar.verbose=true
       sonar.pullrequest.base=master
