@@ -11,6 +11,7 @@ steps:
     extraProperties: |
       sonar.verbose=true
       sonar.branch.name=$(Build.SourceBranchName)
+      sonar.pullrequest.base=master
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
