@@ -14,6 +14,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
+    projects: '**/*.sln'
     arguments: '--no-incremental'
 - task: DotNetCoreCLI@2
   inputs:
