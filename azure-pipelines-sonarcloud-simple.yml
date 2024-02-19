@@ -19,6 +19,11 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'custom'
+    custom: 'tool'
+    arguments: 'install dotnet-coverage --global'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'custom'
     custom: 'coverage'
     projects: '**/*Tests.csproj'
     arguments: 'collect "dotnet test" -f xml -o "coverage.xml"'
