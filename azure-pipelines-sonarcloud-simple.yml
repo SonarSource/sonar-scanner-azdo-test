@@ -25,8 +25,7 @@ steps:
   inputs:
     command: 'custom'
     custom: 'coverage'
-    projects: '**/*Tests.csproj'
-    arguments: 'collect "dotnet test" -f xml -o "coverage.xml"'
+    arguments: 'collect "dotnet test **/*Tests.csproj" -f xml -o "coverage.xml"'
 - task: SonarCloudAnalyze@1
   inputs:
     jdkversion: 'JAVA_HOME_17_X64'
