@@ -8,7 +8,9 @@ steps:
     organization: 'sonarsource'
     scannerMode: 'MSBuild'
     projectKey: 'sonar-scanner-vsts-test'
-    extraProperties: sonar.verbose=true
+    extraProperties: |
+      sonar.verbose=true
+      sonar.branch.name=$(Build.SourceBranchName)
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
