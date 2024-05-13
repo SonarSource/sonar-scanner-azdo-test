@@ -22,7 +22,7 @@ steps:
   inputs:
     command: 'test'
     projects: '**/*Tests.csproj'
-    arguments: '--collect "Code coverage;Format=xml"'
+    arguments: '--collect "Code coverage;Format=xml;CoverageFileName=Test.coveragexml"'
 - task: SonarQubeAnalyze@5
   inputs:
     jdkversion: 'JAVA_HOME_21_X64'
