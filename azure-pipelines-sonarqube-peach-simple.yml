@@ -15,7 +15,9 @@ steps:
     SonarQube: 'Peach'
     scannerMode: 'MSBuild'
     projectKey: 'SampleNetSolution'
-    extraProperties: sonar.verbose=true,sonar.cs.vscoveragexml.reportsPaths=*.xml
+    extraProperties: |
+      sonar.verbose=true
+      sonar.cs.vscoveragexml.reportsPaths=*.xml
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
