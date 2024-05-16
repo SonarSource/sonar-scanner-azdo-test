@@ -1,0 +1,34 @@
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'SonarCloud'
+    organization: 'sonarsource'
+    scannerMode: 'MSBuild'
+    projectKey: 'SonarSource_sonar-scanner-vsts-test'
+    extraProperties: |
+      sonar.verbose=true
+      sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: 'src/SampleSolution.sln'
+    arguments: '--no-incremental'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'custom'
+    custom: 'tool'
+    arguments: 'install dotnet-coverage --global'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'custom'
+    custom: 'coverage'
+    arguments: 'collect "dotnet test src/SampleSolution.sln" -f xml -o "coverage.xml"'
+- task: SonarCloudAnalyze@1
+  inputs:
+    jdkversion: 'JAVA_HOME_17_X64'
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
