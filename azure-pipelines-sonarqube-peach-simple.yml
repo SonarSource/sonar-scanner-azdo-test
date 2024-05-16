@@ -25,7 +25,7 @@ steps:
     command: 'test'
     projects: '**/*Tests.csproj'
     arguments: '--collect "Code coverage"'
-- publish: $(System.DefaultWorkingDirectory)/.sonarqube
+- publish: $(Agent.BuildDirectory)/.sonarqube
   artifact: SonarqubeDirectory
 - task: SonarQubeAnalyze@5
   inputs:
