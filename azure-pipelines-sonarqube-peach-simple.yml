@@ -10,6 +10,10 @@ pool:
   vmImage: windows-latest
 
 steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    useGlobalJson: true
 - task: SonarQubePrepare@5
   inputs:
     SonarQube: 'Peach'
