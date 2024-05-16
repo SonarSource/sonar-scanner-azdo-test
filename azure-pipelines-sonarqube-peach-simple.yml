@@ -25,6 +25,8 @@ steps:
     command: 'test'
     projects: '**/*Tests.csproj'
     arguments: '--collect "Code coverage"'
+- publish: $(System.DefaultWorkingDirectory)/.sonarqube
+  artifact: SonarqubeDirectory
 - task: SonarQubeAnalyze@5
   inputs:
     jdkversion: 'JAVA_HOME_21_X64'
