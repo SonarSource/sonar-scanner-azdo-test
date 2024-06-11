@@ -12,3 +12,9 @@ Detailed documentation of the above setups can be found in the [xtranet document
 * [Azure DevOps pipeline "SonarQube - peach - simple"](https://dev.azure.com/sonar-testing/sonar-scanner-vsts-test/_build?definitionId=3)
 * [Peach project "SampleNetSolution"](https://peach.aws-prd.sonarsource.com/dashboard?id=SampleNetSolution)
 * [Custom Extension marketplace for testing pre-release extensions](https://marketplace.visualstudio.com/manage/publishers/sonar-testing)
+
+# Sonar Cloud extension testing
+
+* [Azure DevOps pipeline "SonarCloud - simple"](https://dev.azure.com/sonar-testing/sonar-scanner-vsts-test/_build?definitionId=4)
+* [SonarCloud project "sonar-scanner-vsts-test"](https://sonarcloud.io/project/overview?id=SonarSource_sonar-scanner-vsts-test)
+* [Custom Extension marketplace for testing pre-release extensions](https://marketplace.visualstudio.com/manage/publishers/sonar-testing)
