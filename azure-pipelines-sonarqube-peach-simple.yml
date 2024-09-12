@@ -10,6 +10,10 @@ pool:
   vmImage: windows-latest
 
 steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    useGlobalJson: true
 - task: SonarQubePrepare@5
   inputs:
     SonarQube: 'Peach'
@@ -21,6 +25,8 @@ steps:
     command: 'test'
     projects: '**/*Tests.csproj'
     arguments: '--collect "Code coverage"'
+- publish: $(Agent.BuildDirectory)/.sonarqube
+  artifact: SonarqubeDirectory
 - task: SonarQubeAnalyze@5
   inputs:
     jdkversion: 'JAVA_HOME_21_X64'
